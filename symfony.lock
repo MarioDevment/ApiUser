@@ -251,6 +251,9 @@
     "symfony/security-http": {
         "version": "v4.2.0"
     },
+    "symfony/serializer": {
+        "version": "v4.2.0"
+    },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {

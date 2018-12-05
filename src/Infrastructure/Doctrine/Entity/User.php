@@ -74,7 +74,8 @@ final class User implements UserInterface
 		$roles   = explode(',', $this->roles);
 		$roles[] = 'ROLE_USER';
 
-		return array_unique($roles);
+		$result = array_filter($roles);
+		return array_unique($result);
 	}
 
 	public function getSalt(): string

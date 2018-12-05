@@ -1,10 +1,9 @@
-index:
-    path: /
-    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::logged
-    
-security_login:
-    path: /login
-    methods: POST
-    
-security_logout:
+api_login:
+    path: /api/login
+
+api_context:
+    path: /api
+    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::__invoke
+
+logout:
     path: /logout
