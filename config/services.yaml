@@ -8,8 +8,8 @@ services:
 
     MarioDevment\ApiUser\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/Infrastructure/{DependencyInjection,Doctrine/Entity,Doctrine/Migrations,Tests,Symfony/Kernel.php}'
 
-    MarioDevment\ApiUser\Controller\:
-        resource: '../src/Controller'
+    MarioDevment\ApiUser\Infrastructure\Symfony\Controller\:
+        resource: '../src/Infrastructure/Symfony/Controller'
         tags: ['controller.service_arguments']

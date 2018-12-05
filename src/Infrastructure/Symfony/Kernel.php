@@ -1,6 +1,6 @@
 <?php
 
-namespace MarioDevment\ApiUser;
+namespace MarioDevment\ApiUser\Infrastructure\Symfony;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\Config\Loader\LoaderInterface;

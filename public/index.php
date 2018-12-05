@@ -1,6 +1,6 @@
 <?php
 
-use MarioDevment\ApiUser\Kernel;
+use MarioDevment\ApiUser\Infrastructure\Symfony\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 
