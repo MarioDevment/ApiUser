@@ -1,10 +1,28 @@
 security:
+    encoders:
+        MarioDevment\ApiUser\Infrastructure\Doctrine\Entity\User:
+            algorithm: 'argon2i'
+            memory_cost: 1024
+            time_cost: 2
+            threads: 2
     providers:
-        in_memory: { memory: ~ }
+        user_database:
+            entity:
+                class: MarioDevment\ApiUser\Infrastructure\Doctrine\Entity\User
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
+            form_login:
+                provider:   user_database
+                login_path: security_login
+                check_path: security_login
+                post_only:  true
+            logout:
+                path:   security_logout
+                target: security_login
     access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

@@ -13,3 +13,6 @@ services:
     MarioDevment\ApiUser\Infrastructure\Symfony\Controller\:
         resource: '../src/Infrastructure/Symfony/Controller'
         tags: ['controller.service_arguments']
+
+    Monolog\Formatter\JsonFormatter:
+        class: Monolog\Formatter\JsonFormatter
