@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "MarioDevment\\ApiUser\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "MarioDevment\\ApiUser\\Tests\\": "test/"
         }
     },
     "replace": {
