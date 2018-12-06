@@ -1,5 +1,6 @@
 api_login:
     path: /api/login
+    methods: [POST]
 
 logout:
     path: /logout
