@@ -1,18 +1,21 @@
 index:
     path: /
     controller: MarioDevment\ApiUser\Infrastructure\Symfony\Controller\DefaultController::__invoke
+    methods: [GET]
 
 logout:
     path: /logout
 
 api_login:
-    path: /api/v1/login
+    path: /api/login
     methods: [POST]
     
+api_register:
+    path: /api/register
+    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\RegisterController::__invoke
+    methods: [POST]
+
 api_context:
     path: /api/v1
     controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::loginSuccess
-    
-api_register:
-    path: /api/v1/register
-    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\RegisterController::__invoke
+    methods: [GET]

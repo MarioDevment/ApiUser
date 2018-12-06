@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace MarioDevment\ApiUser\Infrastructure\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use MarioDevment\ApiUser\Context\Shared\Types\RandomDictionary;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -13,9 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 final class User implements UserInterface
 {
-	private const LENGTH       = 32;
-	private const DELIMITER    = ',';
-	private const DEFAULT_ROLE = 'ROLE_USER';
+	private const DEFAULT_ROLE = ['ROLE_USER'];
 
 	/**
 	 * @ORM\Id
@@ -29,31 +26,29 @@ final class User implements UserInterface
 	 */
 	private $username;
 	/**
-	 * @ORM\Column(type="string", unique=true)
-	 */
-	private $email;
-	/**
 	 * @ORM\Column(type="string")
 	 */
 	private $password;
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", unique=true)
+	 */
+	private $email;
+	/**
+	 * @ORM\Column(type="array")
 	 */
 	private $roles;
 	/**
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="boolean")
 	 */
-	private $salt;
+	private $isActive;
 
-	public function __construct(string $username, string $email, string $password, string $roles)
+	public function __construct(string $username, string $email)
 	{
 		$this->username = $username;
-		$this->password = $password;
-		$this->roles    = $roles;
 		$this->email    = $email;
 
-		$randomSalt = new RandomDictionary();
-		$this->salt = $randomSalt->generate(self::LENGTH);
+		$this->isActive = true;
+		$this->roles    = self::DEFAULT_ROLE;
 	}
 
 	public function getId(): string
@@ -78,19 +73,25 @@ final class User implements UserInterface
 
 	public function getRoles(): array
 	{
-		$roles   = explode(self::DELIMITER, $this->roles);
-		$roles[] = self::DEFAULT_ROLE;
-
-		$result = array_filter($roles);
-		return array_unique($result);
+		return array_unique($this->roles);
 	}
 
-	public function getSalt(): string
+	public function setRoles($roles): void
 	{
-		return $this->salt;
+		$this->roles = $roles;
+	}
+
+	public function setEncodePassword(string $password): void
+	{
+		$this->password = $password;
 	}
 
 	public function eraseCredentials(): void
 	{
+	}
+
+	public function getSalt()
+	{
+		return null;
 	}
 }

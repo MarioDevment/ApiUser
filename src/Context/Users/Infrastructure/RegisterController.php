@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace MarioDevment\ApiUser\Context\Users\Infrastructure;
 
+use MarioDevment\ApiUser\Infrastructure\Doctrine\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +14,23 @@ final class RegisterController extends AbstractController
 
 	public function __invoke(Request $request, UserPasswordEncoderInterface $encoder): Response
 	{
-		return $this->json('hello world');
+		$username      = $request->request->get('_username');
+		$email         = $request->request->get('_email');
+		$plainPassword = $request->request->get('_password');
+
+		$user     = new User($username, $email);
+		$password = $encoder->encodePassword($user, $plainPassword);
+		$user->setEncodePassword($password);
+
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($user);
+		$em->flush();
+
+		return new Response(
+			'ok',
+			Response::HTTP_OK,
+			['content-type' => 'application/json']
+		);
 	}
 
 }

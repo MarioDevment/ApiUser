@@ -11,11 +11,11 @@ security:
                 class: MarioDevment\ApiUser\Infrastructure\Doctrine\Entity\User
     firewalls:
         login:
-            pattern:  ^/api/v1/login
+            pattern:  ^/api/login
             stateless: true
             anonymous: true
             json_login:
-                check_path:               /api/v1/login
+                check_path:               /api/login
                 success_handler:          lexik_jwt_authentication.handler.authentication_success
                 failure_handler:          lexik_jwt_authentication.handler.authentication_failure
                 require_previous_session: false
@@ -32,6 +32,6 @@ security:
             anonymous: true
     
     access_control:
-        - { path: ^/api/v1/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/v1/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1, roles: IS_AUTHENTICATED_FULLY }
