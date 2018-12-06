@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace MarioDevment\ApiUser\Infrastructure\Doctrine\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use MarioDevment\ApiUser\Context\Shared\Types\RandomDictionary;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -12,6 +13,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 final class User implements UserInterface
 {
+	private const LENGTH       = 32;
+	private const DELIMITER    = ',';
+	private const DEFAULT_ROLE = 'ROLE_USER';
+
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(type="string", unique=true, length=36)
@@ -40,13 +45,15 @@ final class User implements UserInterface
 	 */
 	private $salt;
 
-	public function __construct(string $username, string $email, string $password, string $salt, string $roles)
+	public function __construct(string $username, string $email, string $password, string $roles)
 	{
 		$this->username = $username;
 		$this->password = $password;
 		$this->roles    = $roles;
-		$this->salt     = $salt;
 		$this->email    = $email;
+
+		$randomSalt = new RandomDictionary();
+		$this->salt = $randomSalt->generate(self::LENGTH);
 	}
 
 	public function getId(): string
@@ -71,8 +78,8 @@ final class User implements UserInterface
 
 	public function getRoles(): array
 	{
-		$roles   = explode(',', $this->roles);
-		$roles[] = 'ROLE_USER';
+		$roles   = explode(self::DELIMITER, $this->roles);
+		$roles[] = self::DEFAULT_ROLE;
 
 		$result = array_filter($roles);
 		return array_unique($result);

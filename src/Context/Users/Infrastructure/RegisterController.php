@@ -14,5 +14,5 @@ final class RegisterController extends AbstractController
 	{
 		// TODO: Implement the best SOLID __invoke() method.
 	}
-	
+
 }
