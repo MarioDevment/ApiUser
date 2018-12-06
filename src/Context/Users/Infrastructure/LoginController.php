@@ -11,7 +11,7 @@ use Symfony\Component\Serializer\Serializer;
 
 final class LoginController extends AbstractController
 {
-	public function __invoke(): Response
+	public function loginSuccess()
 	{
 		$user = $this->getUser();
 
@@ -22,7 +22,7 @@ final class LoginController extends AbstractController
 		return new Response(
 			$serializer->serialize($user, 'json'),
 			Response::HTTP_OK,
-			array('content-type' => 'application/json')
+			['content-type' => 'application/json']
 		);
 
 	}

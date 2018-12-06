@@ -1,9 +1,13 @@
 api_login:
     path: /api/login
 
-api_context:
-    path: /api
-    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::__invoke
-
 logout:
     path: /logout
+
+index:
+    path: /
+    controller: MarioDevment\ApiUser\Infrastructure\Symfony\Controller\DefaultController::__invoke
+
+api_context:
+    path: /api
+    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::loginSuccess

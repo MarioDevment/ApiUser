@@ -1,5 +1,7 @@
 #Puesta en marcha
 
+    composer install
+
 Configurar database en .env 
 
     DATABASE_URL=mysql://root:root@127.0.0.1:3306/db_users
