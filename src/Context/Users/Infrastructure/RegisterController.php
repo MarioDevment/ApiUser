@@ -15,8 +15,8 @@ final class RegisterController extends AbstractController
 	public function __invoke(Request $request, UserPasswordEncoderInterface $encoder): Response
 	{
 		$username      = $request->request->get('_username');
-		$email         = $request->request->get('_email');
 		$plainPassword = $request->request->get('_password');
+		$email         = $request->request->get('_email');
 
 		$user     = new User($username, $email);
 		$password = $encoder->encodePassword($user, $plainPassword);
