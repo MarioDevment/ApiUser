@@ -5,5 +5,5 @@ namespace MarioDevment\ApiUser\Context\Users\Domain;
 
 interface Repository
 {
-
+	public function createUser(): void;
 }

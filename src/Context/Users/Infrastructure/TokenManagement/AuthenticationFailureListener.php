@@ -1,6 +1,8 @@
 <?php
+declare(strict_types=1);
 
 namespace MarioDevment\ApiUser\Context\Users\Infrastructure\TokenManagement;
+
 
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationFailureResponse;

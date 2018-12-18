@@ -18,6 +18,9 @@ final class RegisterController extends AbstractController
 		$plainPassword = $request->request->get('_password');
 		$email         = $request->request->get('_email');
 
+
+
+
 		$user     = new User($username, $email);
 		$password = $encoder->encodePassword($user, $plainPassword);
 		$user->setEncodePassword($password);

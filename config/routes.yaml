@@ -9,7 +9,7 @@ logout:
 api_login:
     path: /api/login
     methods: [POST]
-    
+
 api_register:
     path: /api/register
     controller: MarioDevment\ApiUser\Context\Users\Infrastructure\RegisterController::__invoke
@@ -17,5 +17,5 @@ api_register:
 
 api_context:
     path: /api/v1
-    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\LoginController::loginSuccess
+    controller: MarioDevment\ApiUser\Context\Users\Infrastructure\DefaultController::loginSuccess
     methods: [GET]
