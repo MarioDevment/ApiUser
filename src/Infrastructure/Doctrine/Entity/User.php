@@ -42,11 +42,8 @@ final class User implements UserInterface
 	 */
 	private $isActive;
 
-	public function __construct(string $username, string $email)
+	public function __construct()
 	{
-		$this->username = $username;
-		$this->email    = $email;
-
 		$this->isActive = true;
 		$this->roles    = self::DEFAULT_ROLE;
 	}
@@ -84,6 +81,16 @@ final class User implements UserInterface
 	public function setEncodePassword(string $password): void
 	{
 		$this->password = $password;
+	}
+
+	public function setUsername(string $username): void
+	{
+		$this->username = $username;
+	}
+
+	public function setUserEmail(string $email): void
+	{
+		$this->email = $email;
 	}
 
 	public function eraseCredentials(): void

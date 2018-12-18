@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace MarioDevment\ApiUser\Context\Users\Domain;
 
-interface Repository
+
+interface EncoderRepository
 {
-	public function createUser(): void;
+	public function encode(String $password): string;
 }
