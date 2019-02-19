@@ -24,3 +24,11 @@ solicitar el token:
 probar acceso:
 
     curl -H "Content-Type: application/json" -H "Authorization: Bearer ReMPlaZarcOnToKeN" http://localhost:8000/api
+
+### ERROR (Symfony y JWT)
+
+    {"code":401,"message":"JWT Token not found"}
+
+Revisar configuración apache, en la raiz del virtualhost (no en el directorio) agregar.
+
+    SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
